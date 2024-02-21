@@ -13,7 +13,7 @@ class Test_stress(Test_tools):
             self.start_time = time.time()
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.concurrent_requests) as executor:
                 futures = [executor.submit(self.make_request,domain) for domain in islice(cycle(self.domains), self.concurrent_requests)]
-                concurrent.futures.wait(futures,timeout =self.test_timeout)
+                concurrent.futures.as_completed(futures,timeout =self.test_timeout)
                 elapsed_time = time.time() - self.start_time
                 if elapsed_time >= self.test_timeout:
                     self.print_results_and_exit( "Timeout",exit_program = False)#exit = False in order to raise TimeoutError
