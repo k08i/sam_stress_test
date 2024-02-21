@@ -18,7 +18,7 @@ class Test_stress(Test_tools):
                 if elapsed_time >= self.test_timeout:
                     self.print_results_and_exit( "Timeout",exit_program = False)#exit = False in order to raise TimeoutError
                     raise TimeoutError("test timeout occured! stopping stress test")
-            self.print_results_and_exit( "Completed",exit_program = False)
+            self.print_results_and_exit( "Completed",exit_program = True)
             
         except KeyboardInterrupt:
             self.print_results_and_exit(reason="Keyboard interrupt",exit_program= True)
